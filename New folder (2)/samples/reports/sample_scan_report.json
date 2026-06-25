@@ -1,0 +1,83 @@
+{
+  "scan_id": "a1b2c3d4",
+  "timestamp": "2026-06-25T10:30:00+00:00",
+  "duration_seconds": 2.45,
+  "files_scanned": 3,
+  "is_first_commit": true,
+  "commit_blocked": true,
+  "block_reason": "4 Issues Found\n- 1 AWS Secret\n- 1 SQL Injection\n- 1 PII Exposure\n- 1 Client Information Leak\n\nFix issues before committing.",
+  "findings": [
+    {
+      "file_path": "auth/login.py",
+      "line_number": 1,
+      "severity": "CRITICAL",
+      "category": "Secret Detection",
+      "issue_type": "AWS Access Key",
+      "message": "Potential AWS Access Key detected in code.",
+      "code_snippet": "AWS_ACCESS_KEY_ID = \"AKIAIOSFODNN7EXAMPLE\"",
+      "recommended_fix": "Remove the secret and use environment variables or a secrets manager.",
+      "scanner": "regex",
+      "confidence": 97,
+      "llm_validated": true,
+      "llm_valid": true,
+      "fingerprint": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "blocks_commit": true,
+      "metadata": {}
+    },
+    {
+      "file_path": "auth/login.py",
+      "line_number": 5,
+      "severity": "CRITICAL",
+      "category": "Security Vulnerability",
+      "issue_type": "SQL Injection",
+      "message": "User input directly concatenated into SQL query.",
+      "code_snippet": "query = \"SELECT * FROM users WHERE username='\" + username + \"'\"",
+      "recommended_fix": "Use parameterized queries:\nquery = \"SELECT * FROM users WHERE username=%s\"\ncursor.execute(query, (username,))",
+      "scanner": "owasp_rules",
+      "confidence": 95,
+      "llm_validated": true,
+      "llm_valid": true,
+      "fingerprint": "abc123def456",
+      "blocks_commit": true,
+      "metadata": {}
+    },
+    {
+      "file_path": "auth/login.py",
+      "line_number": 8,
+      "severity": "CRITICAL",
+      "category": "PII Detection",
+      "issue_type": "Email Address",
+      "message": "Potential Email Address found in source code.",
+      "code_snippet": "email = \"john.doe@gmail.com\"",
+      "recommended_fix": "Remove PII from code. Use tokenization or secure storage.",
+      "scanner": "pii_regex",
+      "confidence": 88,
+      "llm_validated": true,
+      "llm_valid": true,
+      "fingerprint": "pii789xyz",
+      "blocks_commit": true,
+      "metadata": {}
+    },
+    {
+      "file_path": "config/settings.yaml",
+      "line_number": 12,
+      "severity": "HIGH",
+      "category": "Client Confidential Information",
+      "issue_type": "Restricted Client",
+      "message": "Restricted client reference 'ClientABC' detected.",
+      "code_snippet": "client_name: ClientABC",
+      "recommended_fix": "Remove client-specific references or use configuration outside version control.",
+      "scanner": "client_patterns",
+      "confidence": 90,
+      "llm_validated": true,
+      "llm_valid": true,
+      "fingerprint": "client456",
+      "blocks_commit": true,
+      "metadata": {}
+    }
+  ],
+  "summary": {
+    "CRITICAL": 3,
+    "HIGH": 1
+  }
+}

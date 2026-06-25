@@ -1,0 +1,48 @@
+# DevSecOps Guardian Configuration
+# See docs/USAGE.md for full reference
+
+block_medium: false
+enable_llm: true
+llm_provider: gemini
+llm_model_gemini: gemini-2.5-flash
+llm_model_groq: llama-3.3-70b-versatile
+snippet_context_lines: 20
+parallel_scanners: true
+max_workers: 4
+
+scanners:
+  secrets: true
+  pii: true
+  client_confidential: true
+  vulnerabilities: true
+  dependencies: true
+  code_smells: true
+  misconfigurations: true
+
+external_tools:
+  gitleaks: true
+  trufflehog: false
+  semgrep: true
+  osv_scanner: true
+
+ignore_patterns:
+  - "*.min.js"
+  - "*.min.css"
+  - "package-lock.json"
+  - "yarn.lock"
+  - "poetry.lock"
+  - "*.png"
+  - "*.jpg"
+  - "*.gif"
+  - "*.ico"
+  - "*.woff"
+  - "*.woff2"
+  - "*.pdf"
+  - "*.zip"
+  - "*.tar.gz"
+
+severity_block_rules:
+  CRITICAL: true
+  HIGH: true
+  MEDIUM: false
+  LOW: false

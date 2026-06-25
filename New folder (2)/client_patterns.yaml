@@ -1,0 +1,15 @@
+# Restricted client patterns — customize for your organization
+restricted_clients:
+  - ClientABC
+  - ClientXYZ
+  - InternalCustomer
+
+internal_urls:
+  - internal.company.com
+  - vpn.corp.local
+  - staging-internal.example.com
+
+internal_hostnames:
+  - prod-db-internal
+  - staging-internal
+  - client-portal-internal

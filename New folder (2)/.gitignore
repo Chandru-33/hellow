@@ -1,0 +1,49 @@
+# DevSecOps Guardian
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+
+# DevSecOps runtime data
+.devsecops/reports/
+.devsecops/last_report.json
+.devsecops/scan_history.json
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+.env.example
+
+.devsecops/
+tests/.devsecops/
+__pycache__/
+*.pyc
+
+__pycache__/
+.devsecops/
+*.pyc
